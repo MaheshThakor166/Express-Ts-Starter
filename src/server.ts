@@ -1,13 +1,12 @@
-import express from 'express';
+import express from 'express'
+import { serverConfig } from './config'
+import pingRouter from './routers/ping.router'
+const app = express()
 
-const app=express()
- 
-const PORT:number = 3000;
+/*** Registering all router and their corresponding routes with our app object */
+app.use(pingRouter)
 
-app.get('/ping',(req,res)=>{
-    res.send("pong");
+app.listen(serverConfig.PORT, () => {
+  console.log(`server running at ${serverConfig.PORT} `)
+  console.log('press ctrl +C TO Stop the server')
 })
-
-app.listen(PORT,()=>{
-    console.log(`server running at ${PORT} `);
-});
